@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html class="JFEScope" lang="EN"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>TC12 Survey</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta id="meta-viewport" name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2.5">
+    
+    
+<link rel="icon" href="data:,">
+</head>
+    <body id="SurveyEngineBody" style="direction: ltr;">
+    
+    
+        
+        
+    
+    
+    
+    
+    
+    
+
+
+    <link href="/skin.css" rel="stylesheet">
+    <link href="/assets/site.css" rel="stylesheet">
+
+    
+    <style id="customStyles"></style>
+
+    <style>
+      .JFEScope .questionFocused   .advanceButtonContainer {transition:opacity .3s!important;visibility:unset;opacity:1}
+      .JFEScope .questionUnfocused .advanceButtonContainer, .advanceButtonContainer {transition:opacity .3s!important;visibility:hidden;opacity:0}
+      .Skin .Bipolar .bipolar-mobile-header, .Skin .Bipolar .desktop .bipolar-mobile-header, .Skin .Bipolar .mobile .ColumnLabelHeader {display: none}
+
+      /* Change color of question validation warnings */
+      .Skin .ValidationError.Warn {color: #e9730c;}
+
+      /* Hide mobile preview scrollbar for Chrome, Safari and Opera */
+      html.MobilePreviewFrame::-webkit-scrollbar { display: none; }
+
+      /* Hide mobile preview scrollbar for IE and Edge */
+      html.MobilePreviewFrame { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+    <style type="text/css">.accessibility-hidden{height:0;width:0;overflow:hidden;position:absolute;left:-999px}</style>
+    <div id="polite-announcement" class="accessibility-hidden" aria-live="polite" aria-atomic="true">Page Loaded</div>
+    <div id="assertive-announcement" class="accessibility-hidden" aria-live="assertive" role="alert" aria-atomic="true"></div>
+    
+        <div class="JFE" id="P_1791250597230"><div class="JFEContent SkinV2 webkit CSS3"><div id="Page" class="Page ActivePage"><meta name="HandheldFriendly" content="true">
+<meta name="viewport" content="user-scalable = no, maximum-scale=1, minimum-scale=1, initial-scale = 1, width = device-width">
+<div class="Skin">
+	<div id="Overlay"></div>
+	<div id="Wrapper">
+		<div class="SkinInner">
+			<div id="LogoContainer">
+				<div id="Logo" title="TC12 Survey"><a class="brand" href="/">TC12 Survey</a><span class="brand-sub">MBA class project</span></div>
+			</div>
+			<div id="HeaderContainer">
+					<div id="Header" role="banner"></div>
+				</div>
+			<div id="SkinContent">
+				<div id="Questions" role="main">
+<script src="/assets/app.js"></script>
+<div class="app">
+  <h1>TC12 Survey</h1>
+  <p>Build a conjoint survey on this page, share the link, and download the responses as CSV, dummy-coded and ready for regression.</p>
+
+  <div id="msg" class="msg"></div>
+
+  <div id="signed-in" style="display:none">
+    <div class="card solo">
+      <p>Signed in as <strong id="who"></strong>.</p>
+      <a class="btn" href="/admin/">My surveys</a>
+      <a class="btn ghost" href="/edit/">Create a new survey</a>
+      <button type="button" class="btn ghost" id="logout">Log out</button>
+    </div>
+  </div>
+
+  <h2>How it works</h2>
+  <ol>
+    <li>Create an account with your invite code.</li>
+    <li>In the editor, fill in <strong>why</strong> you are collecting the data, the <strong>attributes</strong> and their levels,
+      and the <strong>profiles</strong> (combinations) respondents will rate. A live preview shows the survey as you type.</li>
+    <li>Publish and share the survey link.</li>
+    <li>Log in any time to see responses and download CSV files.</li>
+  </ol>
+  <p class="muted">Every survey has the same structure as our premium SUV conjoint survey: welcome, name and NetID,
+    up to 3 background questions, attribute description, attribute importance (1 to 7) and profile ratings (1 to 7).
+    Every question is required.</p>
+
+  <div id="auth">
+    <div class="tabs" role="tablist">
+      <button type="button" id="tab-login" class="on" role="tab">Log in</button>
+      <button type="button" id="tab-register" role="tab">Create account</button>
+    </div>
+    <form id="login" class="card" novalidate>
+      <label class="f" for="l-email">Email</label>
+      <input class="f" id="l-email" type="email" autocomplete="username" required>
+      <label class="f" for="l-pw">Password</label>
+      <input class="f" id="l-pw" type="password" autocomplete="current-password" required>
+      <p><button class="btn" type="submit">Log in</button></p>
+      <p class="muted">Forgot your password? Ask the person who gave you the invite code to reset it.</p>
+    </form>
+    <form id="register" class="card" novalidate style="display:none">
+      <label class="f" for="r-invite">Invite code</label>
+      <input class="f" id="r-invite" autocomplete="off" placeholder="tc12-xxxxxxxx" required>
+      <label class="f" for="r-email">Email</label>
+      <input class="f" id="r-email" type="email" autocomplete="username" required>
+      <label class="f" for="r-pw">Password (at least 10 characters)</label>
+      <input class="f" id="r-pw" type="password" autocomplete="new-password" minlength="10" required>
+      <label class="f" for="r-pw2">Repeat password</label>
+      <input class="f" id="r-pw2" type="password" autocomplete="new-password" required>
+      <p><button class="btn" type="submit">Create account</button></p>
+      <p class="muted">Your email is only your login name. We never send email.</p>
+    </form>
+  </div>
+</div>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search), msg = document.getElementById('msg');
+  function show(kind, text) { msg.className = 'msg ' + kind; msg.textContent = text; }
+  function next() {
+    // only same-site paths; URL parsing also catches tricks like /\evil.com
+    var n = q.get('next'), u = null;
+    try { u = n ? new URL(n, location.origin) : null; } catch (_) {}
+    location.href = u && u.origin === location.origin ? u.href : '/admin/';  // absolute href: a pathname like //x would leave the site
+  }
+  if (q.get('expired')) show('err', 'Your session has expired. Please log in again.');
+  if (TC12.token()) {
+    document.getElementById('who').textContent = TC12.email();
+    document.getElementById('signed-in').style.display = '';
+    document.getElementById('auth').style.display = 'none';
+  }
+  document.getElementById('logout').addEventListener('click', function () {
+    TC12.api('POST', '/logout', {}, { noRedirect: true }).catch(function () {}).then(function () { TC12.setLogin(null); location.href = '/'; });
+  });
+  function tab(which) {
+    document.getElementById('login').style.display = which === 'login' ? '' : 'none';
+    document.getElementById('register').style.display = which === 'register' ? '' : 'none';
+    document.getElementById('tab-login').classList.toggle('on', which === 'login');
+    document.getElementById('tab-register').classList.toggle('on', which === 'register');
+    msg.className = 'msg';
+  }
+  document.getElementById('tab-login').addEventListener('click', function () { tab('login'); });
+  document.getElementById('tab-register').addEventListener('click', function () { tab('register'); });
+  function busy(form, on) { form.querySelector('button[type=submit]').disabled = on; }
+
+  document.getElementById('login').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var f = e.target, em = document.getElementById('l-email').value.trim(), pw = document.getElementById('l-pw').value;
+    if (!em || !pw) return show('err', 'Please enter your email and password.');
+    busy(f, true);
+    TC12.api('POST', '/login', { email: em, password: pw }, { noRedirect: true }).then(function (r) {
+      TC12.setLogin(r.token, r.email); next();
+    }).catch(function (err) { busy(f, false); show('err', err.message); });
+  });
+  document.getElementById('register').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var f = e.target, inv = document.getElementById('r-invite').value.trim(), em = document.getElementById('r-email').value.trim(),
+      pw = document.getElementById('r-pw').value, pw2 = document.getElementById('r-pw2').value;
+    if (!inv || !em || !pw) return show('err', 'Please fill in every field.');
+    if (pw.length < 10) return show('err', 'Password must be at least 10 characters.');
+    if (pw !== pw2) return show('err', 'The two passwords do not match.');
+    busy(f, true);
+    TC12.api('POST', '/register', { invite: inv, email: em, password: pw }, { noRedirect: true }).then(function (r) {
+      TC12.setLogin(r.token, r.email); location.href = '/edit/';
+    }).catch(function (err) { busy(f, false); show('err', err.message); });
+  });
+})();
+</script>
+</div><div id="Buttons" role="navigation"></div>
+			</div>
+		</div>
+		<div id="Footer" role="contentinfo"><div class="site-note">TC12 Survey is a student class project. It is not an official Cornell University or Qualtrics website. Responses are used only for class assignments.</div></div>
+		<div id="PushStickyFooter"></div>
+	</div>
+	
+</div>
+
+
+
+</div></div></div>
+</body></html>

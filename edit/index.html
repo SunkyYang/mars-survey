@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html class="JFEScope" lang="EN"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Survey editor | TC12 Survey</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta id="meta-viewport" name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2.5">
+    
+    
+<link rel="icon" href="data:,">
+</head>
+    <body id="SurveyEngineBody" style="direction: ltr;">
+    
+    
+        
+        
+    
+    
+    
+    
+    
+    
+
+
+    <link href="/skin.css" rel="stylesheet">
+    <link href="/assets/site.css" rel="stylesheet">
+
+    
+    <style id="customStyles"></style>
+
+    <style>
+      .JFEScope .questionFocused   .advanceButtonContainer {transition:opacity .3s!important;visibility:unset;opacity:1}
+      .JFEScope .questionUnfocused .advanceButtonContainer, .advanceButtonContainer {transition:opacity .3s!important;visibility:hidden;opacity:0}
+      .Skin .Bipolar .bipolar-mobile-header, .Skin .Bipolar .desktop .bipolar-mobile-header, .Skin .Bipolar .mobile .ColumnLabelHeader {display: none}
+
+      /* Change color of question validation warnings */
+      .Skin .ValidationError.Warn {color: #e9730c;}
+
+      /* Hide mobile preview scrollbar for Chrome, Safari and Opera */
+      html.MobilePreviewFrame::-webkit-scrollbar { display: none; }
+
+      /* Hide mobile preview scrollbar for IE and Edge */
+      html.MobilePreviewFrame { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+    <style type="text/css">.accessibility-hidden{height:0;width:0;overflow:hidden;position:absolute;left:-999px}</style>
+    <div id="polite-announcement" class="accessibility-hidden" aria-live="polite" aria-atomic="true">Page Loaded</div>
+    <div id="assertive-announcement" class="accessibility-hidden" aria-live="assertive" role="alert" aria-atomic="true"></div>
+    
+        <div class="JFE" id="P_1791250597230"><div class="JFEContent SkinV2 webkit CSS3"><div id="Page" class="Page ActivePage"><meta name="HandheldFriendly" content="true">
+<meta name="viewport" content="user-scalable = no, maximum-scale=1, minimum-scale=1, initial-scale = 1, width = device-width">
+<div class="Skin">
+	<div id="Overlay"></div>
+	<div id="Wrapper">
+		<div class="SkinInner">
+			<div id="LogoContainer">
+				<div id="Logo" title="TC12 Survey"><a class="brand" href="/">TC12 Survey</a><span class="brand-sub">MBA class project</span></div>
+			</div>
+			<div id="HeaderContainer">
+					<div id="Header" role="banner"></div>
+				</div>
+			<div id="SkinContent">
+				<div id="Questions" role="main">
+<script src="/assets/app.js"></script>
+<div class="app editor-page">
+  <div class="topbar"><span><a href="/admin/">&larr; My surveys</a></span><span>Signed in as <strong id="who"></strong></span></div>
+  <h1 id="heading">New survey</h1>
+  <div id="draft" class="msg ok" style="display:none"></div>
+  <div id="msg" class="msg"></div>
+
+  <div id="editor" class="editor-grid">
+    <div class="editor-form">
+      <div class="intro">
+        <p>Hi, and thanks for giving this a try. We put it together so you can build a conjoint survey like our
+          premium SUV one without starting from scratch.</p>
+        <p>You only need three things: why you're collecting the data, the attributes and their levels, and the profiles
+          you'd like people to rate. The rest is already in place. If you'd rather not begin with a blank page,
+          <strong>Start from the example</strong> fills in our SUV survey for you to adapt.</p>
+        <p>Anything on a grey background can be changed. Click &#9998;, make your edit, then press <strong>Done</strong> or Enter.
+          The preview on the right shows exactly what your respondents will see.</p>
+        <p>The standard wording between your questions adjusts to your product and numbers on its own (marked <em>default</em>).
+          Feel free to rewrite any of it; your version then stays as you wrote it (marked <em>custom</em>).
+          <code>**bold**</code> and <code>__underline__</code> work too.</p>
+        <p>Your work is saved in this browser, so you can close the tab and come back later. If anything looks off or you
+          get stuck, message Sunky. Have fun with it.</p>
+      </div>
+      <p><button type="button" class="btn small ghost" id="example">Start from the example</button>
+        <button type="button" class="btn small ghost" id="clear">Clear form</button></p>
+      <fieldset id="form" class="plain">
+        <!-- Same order as the survey on the right. Grey rows are editable with the pencil. -->
+        <h2>1. Basics</h2>
+        <div id="basics"></div>
+        <div class="text-group"><h3>Survey text &middot; welcome</h3><div id="texts-welcome"></div></div>
+        <h2>2. Background questions</h2>
+        <p class="muted">Short text answers. Name and NetID are always asked; add up to 3 more.</p>
+        <div id="background"></div>
+        <div class="text-group"><h3>Survey text &middot; before the attributes</h3><div id="texts-intro"></div></div>
+        <h2>3. Attributes</h2>
+        <p class="muted">2 to 8 attributes, each with 2 to 5 levels. The explanation is shown in the attribute description
+          ("a) Comfort: tuned for driver and family..."); only the level name appears in the profiles.</p>
+        <div id="attributes"></div>
+        <div class="text-group"><h3>Survey text &middot; after the attributes</h3><div id="texts-middle"></div></div>
+        <h2>4. Profiles</h2>
+        <p class="muted">The combinations respondents rate. Choose a level for every attribute in each row.
+          Respondents see them in this order.</p>
+        <div id="profiles"></div>
+        <div class="text-group"><h3>Survey text &middot; thank-you page</h3><div id="texts-end"></div></div>
+      </fieldset>
+    </div>
+    <div class="editor-side">
+      <div class="side-sticky">
+        <div class="publish-bar">
+          <button type="button" class="btn" id="publish" disabled>Publish</button>
+          <span id="status" class="status">Loading...</span>
+        </div>
+        <div id="checks" class="checks"></div>
+        <div class="muted" id="preview-note"></div>
+        <iframe class="preview" id="preview" title="Survey preview"></iframe>
+        <p class="muted small">This is exactly what respondents will see. You can try it; nothing is recorded in the preview.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="done" style="display:none">
+    <h2 id="done-title">Published</h2>
+    <p>Share this link with respondents:</p>
+    <div class="linkbox"><input id="link" readonly><button type="button" class="btn small" id="copy">Copy</button></div>
+    <p><a class="btn" href="/admin/" id="go-admin">Go to this survey's results</a></p>
+  </div>
+</div>
+<script src="/assets/editor.js"></script>
+</div><div id="Buttons" role="navigation"></div>
+			</div>
+		</div>
+		<div id="Footer" role="contentinfo"><div class="site-note">TC12 Survey is a student class project. It is not an official Cornell University or Qualtrics website. Responses are used only for class assignments.</div></div>
+		<div id="PushStickyFooter"></div>
+	</div>
+	
+</div>
+
+
+
+</div></div></div>
+</body></html>

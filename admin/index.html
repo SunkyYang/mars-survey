@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="JFEScope" lang="EN"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>My surveys | TC12 Survey</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta id="meta-viewport" name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2.5">
+    
+    
+<link rel="icon" href="data:,">
+</head>
+    <body id="SurveyEngineBody" style="direction: ltr;">
+    
+    
+        
+        
+    
+    
+    
+    
+    
+    
+
+
+    <link href="/skin.css" rel="stylesheet">
+    <link href="/assets/site.css" rel="stylesheet">
+
+    
+    <style id="customStyles"></style>
+
+    <style>
+      .JFEScope .questionFocused   .advanceButtonContainer {transition:opacity .3s!important;visibility:unset;opacity:1}
+      .JFEScope .questionUnfocused .advanceButtonContainer, .advanceButtonContainer {transition:opacity .3s!important;visibility:hidden;opacity:0}
+      .Skin .Bipolar .bipolar-mobile-header, .Skin .Bipolar .desktop .bipolar-mobile-header, .Skin .Bipolar .mobile .ColumnLabelHeader {display: none}
+
+      /* Change color of question validation warnings */
+      .Skin .ValidationError.Warn {color: #e9730c;}
+
+      /* Hide mobile preview scrollbar for Chrome, Safari and Opera */
+      html.MobilePreviewFrame::-webkit-scrollbar { display: none; }
+
+      /* Hide mobile preview scrollbar for IE and Edge */
+      html.MobilePreviewFrame { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+    <style type="text/css">.accessibility-hidden{height:0;width:0;overflow:hidden;position:absolute;left:-999px}</style>
+    <div id="polite-announcement" class="accessibility-hidden" aria-live="polite" aria-atomic="true">Page Loaded</div>
+    <div id="assertive-announcement" class="accessibility-hidden" aria-live="assertive" role="alert" aria-atomic="true"></div>
+    
+        <div class="JFE" id="P_1791250597230"><div class="JFEContent SkinV2 webkit CSS3"><div id="Page" class="Page ActivePage"><meta name="HandheldFriendly" content="true">
+<meta name="viewport" content="user-scalable = no, maximum-scale=1, minimum-scale=1, initial-scale = 1, width = device-width">
+<div class="Skin">
+	<div id="Overlay"></div>
+	<div id="Wrapper">
+		<div class="SkinInner">
+			<div id="LogoContainer">
+				<div id="Logo" title="TC12 Survey"><a class="brand" href="/">TC12 Survey</a><span class="brand-sub">MBA class project</span></div>
+			</div>
+			<div id="HeaderContainer">
+					<div id="Header" role="banner"></div>
+				</div>
+			<div id="SkinContent">
+				<div id="Questions" role="main">
+<script src="/assets/app.js"></script>
+<div class="app">
+  <div class="topbar"><span id="crumb"></span><span>Signed in as <strong id="who"></strong> &middot;
+    <a href="#" id="logout">Log out</a></span></div>
+  <div id="msg" class="msg"></div>
+
+  <div id="list-view" style="display:none">
+    <h1>My surveys</h1>
+    <p><a class="btn" href="/edit/">Create a new survey</a></p>
+    <table class="list" id="surveys">
+      <thead><tr><th>Title</th><th>Status</th><th class="num">Responses</th><th class="hide-m">Created (US Eastern)</th><th></th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <p class="muted" id="empty" style="display:none">You have not published any surveys yet.</p>
+  </div>
+
+  <div id="detail-view" style="display:none">
+    <h1 id="title"></h1>
+    <p><span class="pill" id="status"></span> <span class="muted" id="meta"></span></p>
+    <div class="linkbox"><input id="link" readonly><button type="button" class="btn small" id="copy">Copy link</button>
+      <a class="btn small ghost" id="open" target="_blank" rel="noopener">Open</a></div>
+    <div class="actions">
+      <button type="button" class="btn" id="dl-wide">Download wide CSV</button>
+      <button type="button" class="btn ghost" id="dl-long">Download long CSV</button>
+    </div>
+    <p class="muted">Wide CSV: one row per response. Long CSV: one row per respondent and profile, with the level of each
+      attribute and dummy columns (the last level of each attribute is the baseline), ready for regression.</p>
+    <div class="actions">
+      <button type="button" class="btn ghost" id="toggle"></button>
+      <a class="btn ghost" id="replace">Edit</a>
+      <button type="button" class="btn ghost danger" id="delete">Delete survey</button>
+    </div>
+    <h2>Responses (<span id="n"></span>)</h2>
+    <table class="list" id="responses"><thead></thead><tbody></tbody></table>
+  </div>
+</div>
+<script>
+(function () {
+  if (!TC12.requireLogin()) return;
+  var E = TC12.el, msg = document.getElementById('msg'), sid = TC12.sidParam();
+  document.getElementById('who').textContent = TC12.email();
+  function show(kind, text) { msg.className = 'msg ' + kind; msg.textContent = text; }
+  function fail(err) { show('err', err.message); }
+  document.getElementById('logout').addEventListener('click', function (e) {
+    e.preventDefault();
+    TC12.api('POST', '/logout', {}, { noRedirect: true }).catch(function () {}).then(function () { TC12.setLogin(null); location.href = '/'; });
+  });
+
+  function copyBtn(btn, input) {
+    btn.addEventListener('click', function () {
+      input.select();
+      (navigator.clipboard ? navigator.clipboard.writeText(input.value) : Promise.reject()).catch(function () { document.execCommand('copy'); });
+      btn.textContent = 'Copied';
+      setTimeout(function () { btn.textContent = 'Copy link'; }, 1500);
+    });
+  }
+
+  function listView() {
+    document.getElementById('crumb').textContent = '';
+    TC12.api('GET', '/surveys').then(function (r) {
+      var tb = document.querySelector('#surveys tbody');
+      tb.innerHTML = '';
+      r.surveys.forEach(function (s) {
+        var tr = E('tr'), a = E('a', { href: '/admin/?sid=' + s.sid }, s.title), td = E('td');
+        td.appendChild(a); tr.appendChild(td);
+        var st = E('td'); st.appendChild(E('span', { 'class': 'pill ' + s.status }, s.status)); tr.appendChild(st);
+        tr.appendChild(E('td', { 'class': 'num' }, String(s.responses)));
+        tr.appendChild(E('td', { 'class': 'hide-m' }, s.created_at));
+        var op = E('td'); op.appendChild(E('a', { 'class': 'btn small ghost', href: '/admin/?sid=' + s.sid }, 'Open')); tr.appendChild(op);
+        tb.appendChild(tr);
+      });
+      document.getElementById('empty').style.display = r.surveys.length ? 'none' : '';
+      document.getElementById('list-view').style.display = '';
+    }).catch(fail);
+  }
+
+  function detailView() {
+    var crumb = document.getElementById('crumb');
+    crumb.innerHTML = '';
+    crumb.appendChild(E('a', { href: '/admin/' }, '← My surveys'));
+    TC12.api('GET', '/surveys/' + encodeURIComponent(sid)).then(function (s) {
+      document.title = s.title + ' | TC12 Survey';
+      document.getElementById('title').textContent = s.title;
+      var pill = document.getElementById('status');
+      pill.className = 'pill ' + s.status; pill.textContent = s.status === 'open' ? 'open, collecting responses' : 'closed';
+      document.getElementById('meta').textContent = 'Created ' + s.created_at + ' (US Eastern)';
+      var link = document.getElementById('link'); link.value = TC12.surveyUrl(s.sid);
+      document.getElementById('open').href = link.value;
+      var toggle = document.getElementById('toggle');
+      toggle.textContent = s.status === 'open' ? 'Close survey' : 'Reopen survey';
+      toggle.onclick = function () {
+        TC12.api('PATCH', '/surveys/' + encodeURIComponent(sid), { status: s.status === 'open' ? 'closed' : 'open' }).then(detailView).catch(fail);
+      };
+      var rep = document.getElementById('replace');
+      rep.textContent = s.responses.length ? 'View questions' : 'Edit';
+      rep.href = '/edit/?sid=' + s.sid;
+      document.getElementById('n').textContent = s.responses.length;
+
+      var thead = document.querySelector('#responses thead'), tbody = document.querySelector('#responses tbody');
+      thead.innerHTML = ''; tbody.innerHTML = '';
+      var hr = E('tr');
+      ['#', 'Submitted (US Eastern)'].concat(s.preview_columns).concat(['']).forEach(function (h) { hr.appendChild(E('th', {}, h)); });
+      thead.appendChild(hr);
+      s.responses.slice().reverse().forEach(function (r) {
+        var tr = E('tr');
+        tr.appendChild(E('td', { 'class': 'num' }, String(r.no)));
+        tr.appendChild(E('td', {}, r.submitted_at));
+        r.preview.forEach(function (v) { tr.appendChild(E('td', {}, v)); });
+        var td = E('td'), b = E('button', { type: 'button', 'class': 'btn small ghost danger' }, 'Delete');
+        b.addEventListener('click', function () {
+          if (!confirm('Delete response #' + r.no + '? This cannot be undone.')) return;
+          TC12.api('DELETE', '/responses/' + encodeURIComponent(r.id)).then(detailView).catch(fail);
+        });
+        td.appendChild(b); tr.appendChild(td);
+        tbody.appendChild(tr);
+      });
+      if (!s.responses.length) {
+        var tr = E('tr'), td = E('td', { colspan: '4', 'class': 'muted' }, 'No responses yet.');
+        tr.appendChild(td); tbody.appendChild(tr);
+      }
+      document.getElementById('detail-view').style.display = '';
+    }).catch(fail);
+  }
+
+  if (sid) {
+    copyBtn(document.getElementById('copy'), document.getElementById('link'));
+    document.getElementById('dl-wide').addEventListener('click', function () { TC12.download('/surveys/' + encodeURIComponent(sid) + '/wide.csv').catch(fail); });
+    document.getElementById('dl-long').addEventListener('click', function () { TC12.download('/surveys/' + encodeURIComponent(sid) + '/long.csv').catch(fail); });
+    document.getElementById('delete').addEventListener('click', function () {
+      var t = document.getElementById('title').textContent;
+      if (!confirm('Delete "' + t + '" and all its responses? This cannot be undone.')) return;
+      if (!confirm('Are you sure? Download the CSV first if you need the data.')) return;
+      TC12.api('DELETE', '/surveys/' + encodeURIComponent(sid)).then(function () { location.href = '/admin/'; }).catch(fail);
+    });
+    detailView();
+  } else {
+    listView();
+  }
+})();
+</script>
+</div><div id="Buttons" role="navigation"></div>
+			</div>
+		</div>
+		<div id="Footer" role="contentinfo"><div class="site-note">TC12 Survey is a student class project. It is not an official Cornell University or Qualtrics website. Responses are used only for class assignments.</div></div>
+		<div id="PushStickyFooter"></div>
+	</div>
+	
+</div>
+
+
+
+</div></div></div>
+</body></html>

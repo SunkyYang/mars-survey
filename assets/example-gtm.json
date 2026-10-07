@@ -1,0 +1,200 @@
+{
+ "title": "NCC 5030 Marketing Management: Premium SUV Survey",
+ "purpose": "It is part of our Go-To-Market conjoint project for NCC 5030 Marketing Management.",
+ "product": "premium SUV",
+ "profile_name": "SUV",
+ "team": "Core Team 4",
+ "background": [
+  "What industry do you work in? (e.g., financial services, technology, consulting, manufacturing, healthcare, energy, government)"
+ ],
+ "attributes": [
+  {
+   "name": "Price",
+   "levels": [
+    {
+     "name": "$60,000",
+     "note": ""
+    },
+    {
+     "name": "$80,000",
+     "note": ""
+    },
+    {
+     "name": "$100,000",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "name": "Brand",
+   "levels": [
+    {
+     "name": "BMW",
+     "note": ""
+    },
+    {
+     "name": "Mercedes-Benz",
+     "note": ""
+    },
+    {
+     "name": "Porsche",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "name": "Driving style",
+   "levels": [
+    {
+     "name": "Comfort",
+     "note": "tuned for driver and family, soft suspension, quiet cabin"
+    },
+    {
+     "name": "Sporty",
+     "note": "tuned for driving feel, firm suspension, quick steering"
+    },
+    {
+     "name": "Luxury executive",
+     "note": "tuned for passengers and image, premium materials, rear-seat comfort (e.g. massage, rear screens), formal styling"
+    }
+   ]
+  },
+  {
+   "name": "Driving automation",
+   "levels": [
+    {
+     "name": "SAE L1",
+     "note": "the car controls steering OR speed, never both at once; you drive and watch the road at all times"
+    },
+    {
+     "name": "SAE L2",
+     "note": "the car steers AND controls speed together; you must watch the road at all times and are responsible (some systems allow hands off the wheel)"
+    },
+    {
+     "name": "SAE L3",
+     "note": "in defined conditions (e.g. highway traffic jams) the car drives itself and you may look away; you must take over when the car asks"
+    }
+   ]
+  },
+  {
+   "name": "Powertrain",
+   "levels": [
+    {
+     "name": "Gasoline",
+     "note": ""
+    },
+    {
+     "name": "EV",
+     "note": "fully electric vehicle, runs only on its battery, charged by plugging in; no gas engine"
+    }
+   ]
+  }
+ ],
+ "profiles": [
+  [
+   3,
+   1,
+   2,
+   3,
+   2
+  ],
+  [
+   1,
+   2,
+   1,
+   2,
+   1
+  ],
+  [
+   1,
+   1,
+   3,
+   3,
+   1
+  ],
+  [
+   2,
+   2,
+   3,
+   3,
+   2
+  ],
+  [
+   1,
+   1,
+   1,
+   2,
+   2
+  ],
+  [
+   3,
+   3,
+   3,
+   2,
+   2
+  ],
+  [
+   3,
+   1,
+   2,
+   1,
+   1
+  ],
+  [
+   3,
+   3,
+   1,
+   1,
+   2
+  ],
+  [
+   3,
+   2,
+   1,
+   3,
+   1
+  ],
+  [
+   2,
+   1,
+   1,
+   1,
+   2
+  ],
+  [
+   1,
+   3,
+   3,
+   1,
+   1
+  ],
+  [
+   2,
+   3,
+   2,
+   2,
+   1
+  ],
+  [
+   2,
+   3,
+   1,
+   3,
+   1
+  ],
+  [
+   1,
+   2,
+   2,
+   1,
+   2
+  ],
+  [
+   1,
+   3,
+   2,
+   3,
+   2
+  ]
+ ]
+}
